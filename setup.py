@@ -9,7 +9,7 @@ setup(
     url="https://https://github.com/pjs990301/New-York-City-Airbnb-Open-Data",
     python_requires=">=3.6",
     packages=find_packages(where="New_York_Airbnb"),
-    install_requires=['numpy==1.22.3',
+    install_requires=['numpy>=1.21.6',
                       'scikit-learn>=1.0.2',
-                      'seaborn==0.11.2']
+                      'seaborn>=0.11.2']
 )
