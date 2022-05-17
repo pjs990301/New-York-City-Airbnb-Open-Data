@@ -1,5 +1,5 @@
-import setuptools
-from setuptools import setup
+from setuptools import setup, find_packages
+
 setup(
     name="New York Airbnb Open Data",
     version="0.0.1",
@@ -8,6 +8,5 @@ setup(
     description="New York Airbnb Open Data package",
     url="https://https://github.com/pjs990301/New-York-City-Airbnb-Open-Data",
     python_requires=">=3.6",
-    packages=setuptools.find_packages(),
-
+    packages=find_packages()
 )
