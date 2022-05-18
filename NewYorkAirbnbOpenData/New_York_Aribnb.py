@@ -27,9 +27,8 @@ def Standard_Label(numerical_features, categorical_features):
 
     # Categorical feature(Label encoding)
     label = LabelEncoder()
-    categorical_features['neighbourhood'] = label.fit_transform(categorical_features['neighbourhood'])
-    categorical_features['room_type'] = label.fit_transform(categorical_features['room_type'])
-    categorical_features['neighbourhood_group'] = label.fit_transform(categorical_features['neighbourhood_group'])
+    col_to_encode = categorical_features.columns
+    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
@@ -75,9 +74,8 @@ def Robust_Label(numerical_features, categorical_features):
 
     # Categorical feature(Label encoding)
     label = LabelEncoder()
-    categorical_features['neighbourhood'] = label.fit_transform(categorical_features['neighbourhood'])
-    categorical_features['room_type'] = label.fit_transform(categorical_features['room_type'])
-    categorical_features['neighbourhood_group'] = label.fit_transform(categorical_features['neighbourhood_group'])
+    col_to_encode = categorical_features.columns
+    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
@@ -123,9 +121,8 @@ def MinMax_Label(numerical_features, categorical_features):
 
     # Categorical feature(Label encoding)
     label = LabelEncoder()
-    categorical_features['neighbourhood'] = label.fit_transform(categorical_features['neighbourhood'])
-    categorical_features['room_type'] = label.fit_transform(categorical_features['room_type'])
-    categorical_features['neighbourhood_group'] = label.fit_transform(categorical_features['neighbourhood_group'])
+    col_to_encode = categorical_features.columns
+    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
