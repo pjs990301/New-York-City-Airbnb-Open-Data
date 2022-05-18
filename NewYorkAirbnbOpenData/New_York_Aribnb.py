@@ -29,7 +29,8 @@ def Standard_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
+    for i in len(categorical_features.columns) :
+        categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
@@ -78,7 +79,8 @@ def Robust_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
+    for i in len(categorical_features.columns):
+        categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
@@ -126,7 +128,8 @@ def MinMax_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    categorical_features[col_to_encode] = label.fit_transform(categorical_features[col_to_encode])
+    for i in len(categorical_features.columns):
+        categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
     X = pd.concat([numerical_features, categorical_features], axis=1)
