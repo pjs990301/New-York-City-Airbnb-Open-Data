@@ -18,8 +18,7 @@ def print_test(msg):
 def Standard_Label(numerical_features, categorical_features):
     # Numerical_features(StandardScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
@@ -44,8 +43,7 @@ def Standard_Label(numerical_features, categorical_features):
 def Standard_OneHot(numerical_features, categorical_features):
     # Numerical_features(StandardScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
@@ -68,8 +66,7 @@ def Standard_OneHot(numerical_features, categorical_features):
 def Robust_Label(numerical_features, categorical_features):
     # Numerical_features(RobustScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
@@ -94,8 +91,7 @@ def Robust_Label(numerical_features, categorical_features):
 def Robust_OneHot(numerical_features, categorical_features):
     # Numerical_features(RobustScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
@@ -118,8 +114,7 @@ def Robust_OneHot(numerical_features, categorical_features):
 def MinMax_Label(numerical_features, categorical_features):
     # Numerical_features(MinMaxScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
@@ -144,8 +139,7 @@ def MinMax_Label(numerical_features, categorical_features):
 def MinMax_OneHot(numerical_features, categorical_features):
     # Numerical_features(MinMaxScaler)
     # Dependent variables
-    col_to_scale = ['host_id', 'latitude', 'longitude', 'minimum_nights', 'number_of_reviews', 'reviews_per_month',
-                    'calculated_host_listings_count', 'availability_365']
+    col_to_scale = numerical_features.columns
 
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
