@@ -1,6 +1,7 @@
-#made 2022/5//18 14:00
+# made 2022/5//18 14:00
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import MinMaxScaler
@@ -9,8 +10,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 
 
-def print_test(msg) :
+def print_test(msg):
     print(f"hello{msg}")
+
 
 # Define function StandardScaler + Label encoding
 def Standard_Label(numerical_features, categorical_features):
@@ -111,6 +113,7 @@ def Robust_OneHot(numerical_features, categorical_features):
 
     return X, y, Processed_R_oneHot
 
+
 # Define function MinMaxScaler + Label encoding
 def MinMax_Label(numerical_features, categorical_features):
     # Numerical_features(MinMaxScaler)
@@ -159,3 +162,14 @@ def MinMax_OneHot(numerical_features, categorical_features):
     Processed_MinMax_oneHot = pd.concat([X, y], axis=1)
 
     return X, y, Processed_MinMax_oneHot
+
+
+# train-test split and print automatically
+def print_train_test(scaling_encoding_x, scaling_encoding_y, test_size, random_state):
+    X_train, X_test, y_train, y_test = train_test_split(scaling_encoding_x, scaling_encoding_y, test_size=test_size,
+                                                        random_state=random_state)
+    print('Dimensions of the training feature matrix: {}'.format(X_train.shape))
+    print('Dimensions of the training target vector: {}'.format(y_train.shape))
+    print('Dimensions of the test feature matrix: {}'.format(X_test.shape))
+    print('Dimensions of the test target vector: {}'.format(y_test.shape))
+    return X_train, X_test, y_train, y_test
