@@ -17,11 +17,10 @@ def print_test(msg):
 # Define function StandardScaler + Label encoding
 def Standard_Label(numerical_features, categorical_features):
     # Numerical_features(StandardScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
     col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = StandardScaler().fit_transform(numerical_features[col_to_scale])
@@ -29,7 +28,7 @@ def Standard_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    for i in len(categorical_features.columns) :
+    for i in range(len(categorical_features.columns)):
         categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
@@ -43,11 +42,10 @@ def Standard_Label(numerical_features, categorical_features):
 # Define function StandardScaler + OneHot encoding
 def Standard_OneHot(numerical_features, categorical_features):
     # Numerical_features(StandardScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
     col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = StandardScaler().fit_transform(numerical_features[col_to_scale])
@@ -67,11 +65,10 @@ def Standard_OneHot(numerical_features, categorical_features):
 # Define function RobustScaler + Label encoding
 def Robust_Label(numerical_features, categorical_features):
     # Numerical_features(RobustScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
     col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = RobustScaler().fit_transform(numerical_features[col_to_scale])
@@ -79,7 +76,7 @@ def Robust_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    for i in len(categorical_features.columns):
+    for i in range(len(categorical_features.columns)):
         categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
@@ -93,12 +90,12 @@ def Robust_Label(numerical_features, categorical_features):
 # Define function RobustScaler + OneHot encoding
 def Robust_OneHot(numerical_features, categorical_features):
     # Numerical_features(RobustScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = RobustScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(OneHot encoding)
@@ -116,11 +113,10 @@ def Robust_OneHot(numerical_features, categorical_features):
 # Define function MinMaxScaler + Label encoding
 def MinMax_Label(numerical_features, categorical_features):
     # Numerical_features(MinMaxScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
     col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = MinMaxScaler().fit_transform(numerical_features[col_to_scale])
@@ -128,7 +124,7 @@ def MinMax_Label(numerical_features, categorical_features):
     # Categorical feature(Label encoding)
     label = LabelEncoder()
     col_to_encode = categorical_features.columns
-    for i in len(categorical_features.columns):
+    for i in range(len(categorical_features.columns)):
         categorical_features[col_to_encode[i]] = label.fit_transform(categorical_features[col_to_encode[i]])
 
     # pandas dataset X
@@ -142,12 +138,12 @@ def MinMax_Label(numerical_features, categorical_features):
 # Define function MinMaxScaler + OneHot encoding
 def MinMax_OneHot(numerical_features, categorical_features):
     # Numerical_features(MinMaxScaler)
-    # Dependent variables
-    col_to_scale = numerical_features.columns
-
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
+
+    # Dependent variables
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = MinMaxScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(OneHot encoding)
