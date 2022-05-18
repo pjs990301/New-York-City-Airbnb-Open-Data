@@ -1,3 +1,4 @@
+#made 2022/5//18 14:00
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
