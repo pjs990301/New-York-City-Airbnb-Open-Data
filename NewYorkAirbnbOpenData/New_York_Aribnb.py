@@ -23,6 +23,7 @@ def Standard_Label(numerical_features, categorical_features):
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = StandardScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(Label encoding)
@@ -47,6 +48,7 @@ def Standard_OneHot(numerical_features, categorical_features):
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = StandardScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(OneHot encoding)
@@ -70,6 +72,7 @@ def Robust_Label(numerical_features, categorical_features):
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = RobustScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(Label encoding)
@@ -117,6 +120,7 @@ def MinMax_Label(numerical_features, categorical_features):
     # Independent variable(Target value)
     y = numerical_features.loc[:, ['price']]
     numerical_features = numerical_features.drop(['price'], axis=1)
+    col_to_scale = numerical_features.columns
     numerical_features[col_to_scale] = MinMaxScaler().fit_transform(numerical_features[col_to_scale])
 
     # Categorical feature(Label encoding)
