@@ -224,6 +224,7 @@ def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
 
     return train_score, test_score
 
+
 def SE_ExtraTreesClassifier(X_train, X_test, y_train, y_test):
     feature_model = ExtraTreesClassifier()
     feature_model.fit(X_train, y_train)
