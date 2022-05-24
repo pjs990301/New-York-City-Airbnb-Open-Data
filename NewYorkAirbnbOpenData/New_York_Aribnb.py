@@ -1,13 +1,23 @@
 # made 2022/5//18 14:00
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import MinMaxScaler
 
 from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.linear_model import LinearRegression
+
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_percentage_error
+from sklearn.tree import DecisionTreeRegressor
 
 
 def print_test(msg):
@@ -156,6 +166,63 @@ def MinMax_OneHot(numerical_features, categorical_features):
     Processed_MinMax_oneHot = pd.concat([X, y], axis=1)
 
     return X, y, Processed_MinMax_oneHot
+
+
+def SE_LinearRegression(X_train, X_test, y_train, y_test):
+    reg = LinearRegression()
+    reg.fit(X_train, y_train)
+    y_pred = reg.predict(X_test)
+    score = r2_score(y_test, y_pred)
+    MAE = mean_absolute_error(y_test, y_pred)
+    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
+    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+    return score, MAE, RMSE, MAPE
+
+
+def SE_RandomForestRegressor(X_train, X_test, y_train, y_test):
+    forest_model = RandomForestRegressor()
+    forest_model.fit(X_train, y_train)
+    y_pred = forest_model.predict(X_test)
+    score = r2_score(y_test, y_pred)
+    MAE = mean_absolute_error(y_test, y_pred)
+    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
+    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+    return score, MAE, RMSE, MAPE
+
+
+def SE_DecisionTreeRegressor(X_train, X_test, y_train, y_test):
+    DTree = DecisionTreeRegressor()
+    DTree.fit(X_train, y_train)
+    y_pred = DTree.predict(X_test)
+    score = r2_score(y_test, y_pred)
+    MAE = mean_absolute_error(y_test, y_pred)
+    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
+    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+    return score, MAE, RMSE, MAPE
+
+
+def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
+    classifier = KNeighborsClassifier(n_neighbors=5)
+    classifier.fit(X_train, y_train)
+    y_pred = classifier.predict(X_test)
+    score = r2_score(y_test, y_pred)
+    MAE = mean_absolute_error(y_test, y_pred)
+    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
+    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+
+    k_list = range(1, 101)
+    accuracies = []
+    for k in k_list:
+        classifier = KNeighborsClassifier(n_neighbors=k)
+        classifier.fit(X_train, y_train)
+        accuracies.append(classifier.score(X_test, y_test))
+    plt.plot(k_list, accuracies)
+    plt.xlabel("k")
+    plt.ylabel("Validation Accuracy")
+    plt.title("Breast Cancer Classifier Accuracy")
+    plt.show()
+
+    return score, MAE, RMSE, MAPE
 
 
 # train-test split and print automatically
