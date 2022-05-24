@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
@@ -204,11 +205,8 @@ def SE_DecisionTreeRegressor(X_train, X_test, y_train, y_test):
 def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
     classifier = KNeighborsClassifier(n_neighbors=5)
     classifier.fit(X_train, y_train)
-    y_pred = classifier.predict(X_test)
-    score = r2_score(y_test, y_pred)
-    MAE = mean_absolute_error(y_test, y_pred)
-    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
-    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+    train_score = classifier.score(X_train, y_train)
+    test_score = classifier.score(X_test, y_test)
 
     k_list = range(1, 101)
     accuracies = []
@@ -216,13 +214,26 @@ def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
         classifier = KNeighborsClassifier(n_neighbors=k)
         classifier.fit(X_train, y_train)
         accuracies.append(classifier.score(X_test, y_test))
+
+    plt.figure(figsize=(7, 7))
     plt.plot(k_list, accuracies)
     plt.xlabel("k")
     plt.ylabel("Validation Accuracy")
     plt.title("Breast Cancer Classifier Accuracy")
     plt.show()
 
-    return score, MAE, RMSE, MAPE
+    return train_score, test_score
+
+def SE_ExtraTreesClassifier(X_train, X_test, y_train, y_test):
+    feature_model = ExtraTreesClassifier()
+    feature_model.fit(X_train, y_train)
+    train_score = feature_model.score(X_train, y_train)
+    test_score = feature_model.score(X_test, y_test)
+    plt.figure(figsize=(7, 7))
+    feat_importance = pd.Series(feature_model.feature_importances_, index=X_test.columns)
+    feat_importance.nlargest(20).plot(kind='barh')
+    plt.show()
+    return train_score, test_score
 
 
 # train-test split and print automatically
