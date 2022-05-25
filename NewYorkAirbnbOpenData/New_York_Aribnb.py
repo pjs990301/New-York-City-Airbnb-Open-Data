@@ -175,9 +175,10 @@ def SE_LinearRegression(X_train, X_test, y_train, y_test):
     y_pred = reg.predict(X_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
+    MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, RMSE, MAPE
+    return score, MAE, MSE, RMSE, MAPE
 
 
 def SE_RandomForestRegressor(X_train, X_test, y_train, y_test):
@@ -186,9 +187,10 @@ def SE_RandomForestRegressor(X_train, X_test, y_train, y_test):
     y_pred = forest_model.predict(X_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
+    MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, RMSE, MAPE
+    return score, MAE, MSE, RMSE, MAPE
 
 
 def SE_DecisionTreeRegressor(X_train, X_test, y_train, y_test):
@@ -197,9 +199,10 @@ def SE_DecisionTreeRegressor(X_train, X_test, y_train, y_test):
     y_pred = DTree.predict(X_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
+    MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, RMSE, MAPE
+    return score, MAE, MSE, RMSE, MAPE
 
 
 def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
@@ -219,7 +222,7 @@ def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
     plt.plot(k_list, accuracies)
     plt.xlabel("k")
     plt.ylabel("Validation Accuracy")
-    plt.title("Breast Cancer Classifier Accuracy")
+    plt.title("Classifier Accuracy")
     plt.show()
 
     return train_score, test_score
