@@ -13,12 +13,13 @@ from sklearn.preprocessing import MinMaxScaler
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.tree import DecisionTreeRegressor
 
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.tree import DecisionTreeRegressor
 
 
 def print_test(msg):
@@ -173,36 +174,59 @@ def SE_LinearRegression(X_train, X_test, y_train, y_test):
     reg = LinearRegression()
     reg.fit(X_train, y_train)
     y_pred = reg.predict(X_test)
+    train_score = reg.score(X_train, y_train)
+    test_score = reg.score(X_test, y_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
     MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, MSE, RMSE, MAPE
+    return train_score, test_score, score, MAE, MSE, RMSE, MAPE
 
 
 def SE_RandomForestRegressor(X_train, X_test, y_train, y_test):
     forest_model = RandomForestRegressor()
     forest_model.fit(X_train, y_train)
     y_pred = forest_model.predict(X_test)
+    train_score = forest_model.score(X_train, y_train)
+    test_score = forest_model.score(X_test, y_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
     MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, MSE, RMSE, MAPE
+    return train_score, test_score, score, MAE, MSE, RMSE, MAPE
 
 
 def SE_DecisionTreeRegressor(X_train, X_test, y_train, y_test):
     DTree = DecisionTreeRegressor()
     DTree.fit(X_train, y_train)
     y_pred = DTree.predict(X_test)
+    train_score = DTree.score(X_train, y_train)
+    test_score = DTree.score(X_test, y_test)
     score = r2_score(y_test, y_pred)
     MAE = mean_absolute_error(y_test, y_pred)
     MSE = mean_squared_error(y_test, y_pred)
     RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
     MAPE = mean_absolute_percentage_error(y_test, y_pred)
-    return score, MAE, MSE, RMSE, MAPE
+    return train_score, test_score, score, MAE, MSE, RMSE, MAPE
+
+
+def SE_PolynomialRegression(X_train, X_test, y_train, y_test):
+    poly = PolynomialFeatures(degree=2, include_bias=True)
+    X_train_poly = poly.fit_transform(X_train)
+    reg = LinearRegression()
+    reg.fit(X_train_poly, y_train)
+    X_test_poly = poly.transform(X_test)
+    y_pred = reg.predict(X_test_poly)
+    train_score = reg.score(X_train, y_train)
+    test_score = reg.score(X_test, y_test)
+    score = r2_score(y_test, y_pred)
+    MAE = mean_absolute_error(y_test, y_pred)
+    MSE = mean_squared_error(y_test, y_pred)
+    RMSE = np.sqrt(mean_squared_error(y_test, y_pred))
+    MAPE = mean_absolute_percentage_error(y_test, y_pred)
+    return train_score, test_score, score, MAE, MSE, RMSE, MAPE
 
 
 def SE_KNeighborsClassifier(X_train, X_test, y_train, y_test):
