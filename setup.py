@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="NewYorkAirbnbOpenData",
-    version="0.1.13",
+    version="0.1.17",
     author="Pio",
     author_email="p990301@gmail.com",
     description="New York Airbnb Open Data package",
